@@ -6,8 +6,6 @@ import { createTheme, CssBaseline } from '@mui/material';
 
 import App from './App.tsx';
 
-import './index.css';
-
 const theme = createTheme({
   palette: {
     mode: 'light',
@@ -17,13 +15,31 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Open Sans',
+    h1: {
+      fontSize: '3rem',
+      fontWeight: '700',
+      color: '#FFFFFF',
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: '700',
+    },
+    h3: {
+      fontSize: '1.5rem',
+      fontWeight: '600',
+      color: '#E3000B',
+    },
+    h4: {
+      fontSize: '1.5rem',
+      fontWeight: '600',
+    },
   },
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <CssBaseline />
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       <App />
     </ThemeProvider>
   </React.StrictMode>,
