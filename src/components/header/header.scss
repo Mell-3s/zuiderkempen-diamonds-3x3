@@ -1,0 +1,21 @@
+@import '../../styles/colors.scss';
+@import '../../styles/spacing.scss';
+
+.header {
+  background-image: url('../../assets/header.jpg');
+  background-position: center;
+  background-size: cover;
+  border-bottom: 8px solid $red;
+  @include spacing;
+
+  &__3x3 {
+    font-family: 'Londrina Sketch', cursive;
+    color: $red;
+    font-size: 8rem;
+  }
+
+  &__date {
+    color: $red;
+    font-weight: 700;
+  }
+}

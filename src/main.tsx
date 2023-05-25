@@ -16,7 +16,10 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Open Sans',
     h1: {
-      fontSize: '3rem',
+      fontSize: '1.5rem',
+      '@media (min-width:600px)': {
+        fontSize: '3rem',
+      },
       fontWeight: '700',
       color: '#FFFFFF',
     },

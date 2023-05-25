@@ -1,7 +1,9 @@
+import { Header } from './components';
+
 function App() {
   return (
     <main>
-      <h1>3x3 Zuiderkempen Diamonds</h1>
+      <Header />
     </main>
   );
 }
