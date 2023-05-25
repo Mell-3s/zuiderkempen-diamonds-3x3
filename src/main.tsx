@@ -26,6 +26,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Open Sans',
+    allVariants: {
+      color: '#222222',
+    },
     h1: {
       fontSize: '1.5rem',
       '@media (min-width:600px)': {
