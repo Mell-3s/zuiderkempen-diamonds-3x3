@@ -2,3 +2,9 @@
   --red: #e3000b;
   --black: #222222;
 }
+
+#root {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}

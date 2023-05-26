@@ -1,11 +1,14 @@
-import { Header, Intro } from './components';
+import { Footer, Header, Intro } from './components';
 
 function App() {
   return (
-    <main>
+    <>
       <Header />
-      <Intro />
-    </main>
+      <main>
+        <Intro />
+      </main>
+      <Footer />
+    </>
   );
 }
 
