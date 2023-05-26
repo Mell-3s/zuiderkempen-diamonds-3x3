@@ -20,6 +20,18 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           paddingBottom: '2rem',
+          paddingTop: '2rem',
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#E3000B',
+          width: 60,
+          height: 8,
+          borderRadius: 4,
+          margin: '1rem 0',
         },
       },
     },
