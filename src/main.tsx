@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 
 import { ThemeProvider } from '@emotion/react';
 import { createTheme, CssBaseline } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import App from './App.tsx';
 
@@ -13,6 +15,9 @@ const theme = createTheme({
     mode: 'light',
     primary: {
       main: '#E3000B',
+    },
+    secondary: {
+      main: '#F6F6F6',
     },
   },
   components: {
@@ -42,7 +47,7 @@ const theme = createTheme({
       color: '#222222',
     },
     h1: {
-      fontSize: '1.5rem',
+      fontSize: '2rem',
       '@media (min-width:600px)': {
         fontSize: '3rem',
       },
@@ -50,26 +55,19 @@ const theme = createTheme({
       color: '#FFFFFF',
     },
     h2: {
-      fontSize: '1.5rem',
-      '@media (min-width:600px)': {
-        fontSize: '2rem',
-      },
+      fontSize: '2rem',
       fontWeight: '700',
     },
     h3: {
       fontSize: '1.5rem',
-      '@media (min-width:600px)': {
-        fontSize: '2rem',
-      },
       fontWeight: '600',
       color: '#E3000B',
+      margin: '1rem 0',
     },
     h4: {
       fontSize: '1.5rem',
-      '@media (min-width:600px)': {
-        fontSize: '2rem',
-      },
       fontWeight: '600',
+      margin: '1rem 0',
     },
   },
 });
@@ -78,7 +76,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <App />
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <App />
+      </LocalizationProvider>
     </ThemeProvider>
   </React.StrictMode>,
 );

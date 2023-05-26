@@ -1,10 +1,16 @@
 :root {
   --red: #e3000b;
   --black: #222222;
+  --grey: #f6f6f6;
 }
 
 #root {
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+}
+
+hr {
+  margin-top: 2rem;
+  border-top: 1px solid var(--grey);
 }
