@@ -97,13 +97,28 @@ function Registration() {
           />
           <Typography variant='h4'>Wie is de team capitain?</Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
                 error={!!errors?.captain?.name}
                 helperText={errors?.captain?.name?.message}
                 label='Volledige Naam'
                 {...register('captain.name')}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <MobileDatePicker
+                label='Geboortedatum'
+                format='dd-MM-yyyy'
+                maxDate={getAllowedDateByCategory}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    error: !!errors?.captain?.birthday,
+                    helperText: errors?.captain?.birthday?.message,
+                  },
+                }}
+                onAccept={date => date && setValue('captain.birthday', format(date, 'dd-MM-yyyy'))}
               />
             </Grid>
             <Grid item xs={12} md={6}>
