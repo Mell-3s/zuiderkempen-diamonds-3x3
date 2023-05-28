@@ -9,7 +9,9 @@ export const registrationForm = z.object({
     name: z.string().min(3, { message: 'Naam moet minstens 3 karakters lang zijn' }),
     phone: z.string().min(1, { message: 'GSM nummer is verplicht' }),
     email: z.string().email({ message: 'Dit is geen geldige email' }),
-    birthday: z.string().min(1, { message: 'Geboortedatum is verplicht' }),
+    birthday: z
+      .string({ required_error: 'Geboortedatum is verplicht' })
+      .min(1, { message: 'Geboortedatum is verplicht' }),
   }),
   players: z
     .object({
