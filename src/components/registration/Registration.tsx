@@ -27,7 +27,7 @@ interface State {
   };
   players: {
     name: string;
-    birthday?: Date;
+    birthday: Date | null;
   }[];
 }
 
@@ -47,7 +47,7 @@ function Registration() {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<State>({ defaultValues });
   const { fields, append } = useFieldArray({
     control,
@@ -94,7 +94,7 @@ function Registration() {
               </FormControl>
             )}
           />
-          <Typography variant='h4'>Hoe ge je team noemen?</Typography>
+          <Typography variant='h4'>Hoe ga je team noemen?</Typography>
           <Controller
             name='name'
             control={control}
@@ -163,9 +163,8 @@ function Registration() {
           <hr />
           <Typography variant='h3'>Spelers</Typography>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mauris eros, mattis et
-            nunc non, condimentum sagittis lectus. Donec fringilla sapien sapien, at aliquam odio
-            pulvinar ac
+            Je team moet minimum bestaan uit 3 spelers en maximum 4 spelers. Hierbij is de team
+            capitain al bijgerekend.
           </Typography>
           {fields.map((field, index) => (
             <Box bgcolor='secondary.main' padding={2} marginTop={2} key={field.id}>
@@ -212,7 +211,7 @@ function Registration() {
             <Button
               disabled={fields.length >= 3}
               variant='outlined'
-              onClick={() => append({ name: '' })}
+              onClick={() => append({ name: '', birthday: null })}
               startIcon={<AddIcon />}
             >
               Speler toevoegen
@@ -234,7 +233,7 @@ function Registration() {
             </Grid>
           </Grid>
           <Grid container justifyContent='center'>
-            <Button type='submit' variant='contained'>
+            <Button type='submit' variant='contained' disabled={!isValid}>
               Inschrijven
             </Button>
           </Grid>
