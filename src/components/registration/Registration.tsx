@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import AddIcon from '@mui/icons-material/Add';
 import {
   Box,
@@ -14,10 +16,9 @@ import {
   Typography,
 } from '@mui/material';
 import { MobileDatePicker } from '@mui/x-date-pickers';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { TRegistrationForm, categories, registrationForm } from './registrationForm';
-import { useMemo } from 'react';
 import { format } from 'date-fns';
+
+import { categories, registrationForm, TRegistrationForm } from './registrationForm';
 
 function Registration() {
   const {
