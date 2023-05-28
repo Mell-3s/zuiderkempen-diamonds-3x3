@@ -14,49 +14,42 @@ import {
   Typography,
 } from '@mui/material';
 import { MobileDatePicker } from '@mui/x-date-pickers';
-
-const categories = ['U12 Jongens', 'U14 Jongens', 'U16 Jongens', 'U18 + Seniors'];
-
-interface State {
-  category: string;
-  name: string;
-  captain: {
-    name: string;
-    phone: string;
-    email: string;
-  };
-  players: {
-    name: string;
-    birthday: Date | null;
-  }[];
-}
-
-const defaultValues: State = {
-  category: 'U12 Jongens',
-  name: '',
-  captain: {
-    name: '',
-    phone: '',
-    email: '',
-  },
-  players: [],
-};
+import { zodResolver } from '@hookform/resolvers/zod';
+import { TRegistrationForm, categories, registrationForm } from './registrationForm';
+import { useMemo } from 'react';
+import { format } from 'date-fns';
 
 function Registration() {
   const {
     control,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
-  } = useForm<State>({ defaultValues });
+    formState: { errors },
+    register,
+    setValue,
+  } = useForm<TRegistrationForm>({
+    resolver: zodResolver(registrationForm),
+    defaultValues: {
+      category: 'U12 Jongens',
+    },
+  });
   const { fields, append } = useFieldArray({
     control,
     name: 'players',
-    rules: {
-      minLength: 3,
-      required: true,
-    },
   });
+
+  const getAllowedDateByCategory = useMemo((): Date => {
+    switch (watch('category')) {
+      case 'U12 Jongens':
+        return new Date('2013-12-31');
+      case 'U14 Jongens':
+        return new Date('2011-12-31');
+      case 'U16 Jongens':
+        return new Date('2009-12-31');
+      case 'U18 + Seniors':
+        return new Date();
+    }
+  }, [watch('category')]);
 
   return (
     <section className='registration'>
@@ -95,68 +88,40 @@ function Registration() {
             )}
           />
           <Typography variant='h4'>Hoe ga je team noemen?</Typography>
-          <Controller
-            name='name'
-            control={control}
-            rules={{
-              required: true,
-              minLength: 3,
-            }}
-            render={({ field }) => (
-              <TextField
-                error={!!errors?.name}
-                fullWidth
-                helperText={!!errors?.name && 'De naam moet minstens 3 karakters lang zijn'}
-                {...field}
-              />
-            )}
+          <TextField
+            fullWidth
+            error={!!errors?.name}
+            helperText={errors?.name?.message}
+            {...register('name')}
           />
           <Typography variant='h4'>Wie is de team capitain?</Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Controller
-                name='captain.name'
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <TextField
-                    error={!!errors?.captain?.name}
-                    fullWidth
-                    label='Volledige Naam'
-                    {...field}
-                  />
-                )}
+              <TextField
+                fullWidth
+                error={!!errors?.captain?.name}
+                helperText={errors?.captain?.name?.message}
+                label='Volledige Naam'
+                {...register('captain.name')}
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Controller
-                name='captain.email'
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <TextField
-                    error={!!errors?.captain?.email}
-                    fullWidth
-                    label='Email'
-                    type='email'
-                    {...field}
-                  />
-                )}
+              <TextField
+                fullWidth
+                error={!!errors?.captain?.email}
+                helperText={errors?.captain?.email?.message}
+                label='Email'
+                type='email'
+                {...register('captain.email')}
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <Controller
-                name='captain.phone'
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <TextField
-                    error={!!errors?.captain?.phone}
-                    fullWidth
-                    label='GSM Nummer'
-                    {...field}
-                  />
-                )}
+              <TextField
+                fullWidth
+                error={!!errors?.captain?.phone}
+                helperText={errors?.captain?.phone?.message}
+                label='GSM Nummer'
+                {...register('captain.phone')}
               />
             </Grid>
           </Grid>
@@ -170,48 +135,42 @@ function Registration() {
             <Box bgcolor='secondary.main' padding={2} marginTop={2} key={field.id}>
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                  <Controller
-                    name={`players.${index}.name`}
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <TextField
-                        error={!!errors?.players?.[index]?.name}
-                        fullWidth
-                        label='Volledige Naam'
-                        {...field}
-                      />
-                    )}
+                  <TextField
+                    fullWidth
+                    error={!!errors?.players?.[index]?.name}
+                    helperText={errors?.players?.[index]?.name?.message}
+                    label='Volledige Naam'
+                    {...register(`players.${index}.name`)}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <Controller
-                    name={`players.${index}.birthday`}
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <MobileDatePicker
-                        label='Geboorte Datum'
-                        maxDate={new Date()}
-                        slotProps={{
-                          textField: {
-                            fullWidth: true,
-                            error: !!errors?.players?.[index]?.birthday,
-                          },
-                        }}
-                        {...field}
-                      />
-                    )}
+                  <MobileDatePicker
+                    label='Geboortedatum'
+                    format='dd-MM-yyyy'
+                    maxDate={getAllowedDateByCategory}
+                    slotProps={{
+                      textField: {
+                        fullWidth: true,
+                        error: !!errors?.players?.[index]?.birthday,
+                        helperText: errors?.players?.[index]?.birthday?.message,
+                      },
+                    }}
+                    onAccept={date =>
+                      date && setValue(`players.${index}.birthday`, format(date, 'dd-MM-yyyy'))
+                    }
                   />
                 </Grid>
               </Grid>
             </Box>
           ))}
-          <Grid container justifyContent='center' marginTop={2}>
+          {errors?.players?.type === 'too_small' && watch('players').length < 2 && (
+            <Typography color='primary.main'>{errors?.players?.message}</Typography>
+          )}
+          <Grid container marginTop={2} justifyContent='center'>
             <Button
               disabled={fields.length >= 3}
               variant='outlined'
-              onClick={() => append({ name: '', birthday: null })}
+              onClick={() => append({ name: '', birthday: '' })}
               startIcon={<AddIcon />}
             >
               Speler toevoegen
@@ -233,7 +192,7 @@ function Registration() {
             </Grid>
           </Grid>
           <Grid container justifyContent='center'>
-            <Button type='submit' variant='contained' disabled={!isValid}>
+            <Button type='submit' variant='contained'>
               Inschrijven
             </Button>
           </Grid>
