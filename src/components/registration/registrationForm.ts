@@ -1,26 +1,31 @@
-import * as z from 'zod';
+import * as z from "zod";
 
-export const categories = ['U12 Jongens', 'U14 Jongens', 'U16 Jongens', 'U18 + Seniors'] as const;
+export const categories = ["Heren", "Dames"] as const;
+export const subCategoriesMale = [
+  "U12 Jongens",
+  "U14 Jongens",
+  "U16 Jongens",
+  "U18 + Seniors",
+] as const;
+export const subCategoriesFemale = [
+  "U12 Meisjes",
+  "U14 Meisjes",
+  "U16 Meisjes",
+  "U18 + Dames",
+] as const;
 
 export const registrationForm = z.object({
   category: z.enum(categories),
-  name: z.string().min(3, { message: 'Naam moet minstens 3 karakters lang zijn' }),
+  subCategory: z.union([z.enum(subCategoriesMale), z.enum(subCategoriesFemale)]),
+  name: z.string(),
   captain: z.object({
-    name: z.string().min(3, { message: 'Naam moet minstens 3 karakters lang zijn' }),
-    phone: z.string().min(1, { message: 'GSM nummer is verplicht' }),
-    email: z.string().email({ message: 'Dit is geen geldige email' }),
-    birthday: z
-      .string({ required_error: 'Geboortedatum is verplicht' })
-      .min(1, { message: 'Geboortedatum is verplicht' }),
-    isPlayer: z.boolean().default(false),
+    name: z.string(),
+    phone: z.string(),
+    email: z.string().email(),
+    birthday: z.string(),
+    isPlayer: z.boolean(),
   }),
-  players: z
-    .object({
-      name: z.string().min(3, { message: 'Naam moet minstens 3 karakters lang zijn' }),
-      birthday: z.string().min(1, { message: 'Geboortedatum is verplicht' }),
-    })
-    .array()
-    .min(2, { message: 'Je moet minstens 2 andere teamleden hebben' }),
+  players: z.object({ name: z.string(), birthday: z.string() }).array(),
 });
 
 export type TRegistrationForm = z.infer<typeof registrationForm>;
