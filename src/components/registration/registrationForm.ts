@@ -12,6 +12,7 @@ export const registrationForm = z.object({
     birthday: z
       .string({ required_error: 'Geboortedatum is verplicht' })
       .min(1, { message: 'Geboortedatum is verplicht' }),
+    isPlayer: z.boolean().default(false),
   }),
   players: z
     .object({

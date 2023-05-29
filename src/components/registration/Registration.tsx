@@ -6,9 +6,11 @@ import AddIcon from '@mui/icons-material/Add';
 import {
   Box,
   Button,
+  Checkbox,
   Container,
   FormControl,
   FormControlLabel,
+  FormGroup,
   Grid,
   Radio,
   RadioGroup,
@@ -110,7 +112,7 @@ function Registration() {
               <MobileDatePicker
                 label='Geboortedatum'
                 format='dd-MM-yyyy'
-                maxDate={getAllowedDateByCategory}
+                maxDate={watch('captain.isPlayer') ? getAllowedDateByCategory : new Date()}
                 slotProps={{
                   textField: {
                     fullWidth: true,
@@ -140,12 +142,26 @@ function Registration() {
                 {...register('captain.phone')}
               />
             </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name='captain.isPlayer'
+                control={control}
+                render={({ field }) => (
+                  <FormGroup {...field}>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label='Ben je zelf een speler van dit team?'
+                    />
+                  </FormGroup>
+                )}
+              />
+            </Grid>
           </Grid>
           <hr />
           <Typography variant='h3'>Spelers</Typography>
           <Typography>
-            Je team moet minimum bestaan uit 3 spelers en maximum 4 spelers. Hierbij is de team
-            capitain al bijgerekend.
+            Je team moet minimum bestaan uit 3 spelers en maximum 4 spelers. Als de team capitain
+            zelf meespeelt moet je deze niet meer bij de spelers ingeven.
           </Typography>
           {fields.map((field, index) => (
             <Box bgcolor='secondary.main' padding={2} marginTop={2} key={field.id}>
@@ -184,7 +200,7 @@ function Registration() {
           )}
           <Grid container marginTop={2} justifyContent='center'>
             <Button
-              disabled={fields.length >= 3}
+              disabled={fields.length >= (watch('captain.isPlayer') ? 3 : 4)}
               variant='outlined'
               onClick={() => append({ name: '', birthday: '' })}
               startIcon={<AddIcon />}
