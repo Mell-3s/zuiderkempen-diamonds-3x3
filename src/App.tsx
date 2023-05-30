@@ -1,4 +1,4 @@
-import { Footer, Header, Intro } from "./components";
+import { Footer, Header, Intro, Registration } from "./components";
 
 function App() {
   return (
@@ -7,6 +7,7 @@ function App() {
       <main>
         <Intro />
         <hr className="container" />
+        <Registration />
       </main>
       <Footer />
     </>
