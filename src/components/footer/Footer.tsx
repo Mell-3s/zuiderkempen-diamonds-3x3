@@ -12,6 +12,8 @@ function Footer() {
           laoreet libero varius at. Duis posuere semper enim, et luctus enim ultrices sed. Integer
           diam turpis, aliquet
         </p>
+        <hr className="my-4" />
+        <p className="text-white text-xs">Copyright &copy; DIVIME</p>
       </div>
     </footer>
   );
