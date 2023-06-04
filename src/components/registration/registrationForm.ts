@@ -3,7 +3,7 @@ import * as z from "zod";
 
 function printPlayers(players: TPlayers): string {
   let message = "";
-  players.forEach((player, i) => (message += `${i + 1}) ${player.name}, ${player.birthday} `));
+  players.forEach((player, i) => (message += `${i + 1}) ${player.name}, ${player.birthday}\n`));
   return message;
 }
 
