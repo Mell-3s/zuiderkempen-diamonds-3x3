@@ -12,7 +12,7 @@ import {
   TabsHeader,
 } from "@material-tailwind/react";
 
-import { categoriesTabs, registrationForm, TRegistrationForm } from "./registrationForm";
+import { categoriesTabs, registrationForm, sendMail, TRegistrationForm } from "./registrationForm";
 
 function Registration() {
   const {
@@ -33,7 +33,7 @@ function Registration() {
   return (
     <section className="container p-8">
       <h3 className="text-2xl font-bold text-red-500">Team details</h3>
-      <form onSubmit={handleSubmit(data => console.log(data))}>
+      <form onSubmit={handleSubmit(sendMail)}>
         <h4 className="mb-4 mt-8 text-xl font-bold">Categorie</h4>
         <Tabs value={categoriesTabs[0].category}>
           <TabsHeader>
