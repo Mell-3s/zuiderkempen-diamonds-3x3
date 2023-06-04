@@ -5,12 +5,9 @@ function Footer() {
         <h2 className="text-3xl font-bold text-white"> Algemene info</h2>
         <hr className="my-2 w-16 rounded border-y-4 border-red-500" />
         <p className="text-white">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mauris eros, mattis et nunc
-          non, condimentum sagittis lectus. Donec fringilla sapien sapien, at aliquam odio pulvinar
-          ac. Donec lacinia, ante a posuere facilisis, massa ipsum dignissim sem, sit amet mollis
-          ligula elit eu tellus. Pellentesque non vehicula est. Maecenas semper eros arcu, ac
-          laoreet libero varius at. Duis posuere semper enim, et luctus enim ultrices sed. Integer
-          diam turpis, aliquet
+          Het tornooi gaat door in het Sportpark Joris Verhaegen te Hulshout (Industriepark 3, 2235
+          Hulshout). Naast veel sportplezier zal er ook een hamburgerkraam aanwezig zijn alsook een
+          springkasteel. De winnaar van het tornooi ontvangt een mooie prijs!
         </p>
         <hr className="my-4" />
         <p className="text-xs text-white">Copyright &copy; DIVIME</p>

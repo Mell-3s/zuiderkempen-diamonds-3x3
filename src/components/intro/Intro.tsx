@@ -1,16 +1,17 @@
 function Intro() {
   return (
-    <section className="container p-8">
-      <h2 className="text-3xl font-bold">Wat kan je verwachten?</h2>
-      <hr className="my-2 w-16 rounded border-y-4 border-red-500" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mauris eros, mattis et nunc
-        non, condimentum sagittis lectus. Donec fringilla sapien sapien, at aliquam odio pulvinar
-        ac. Donec lacinia, ante a posuere facilisis, massa ipsum dignissim sem, sit amet mollis
-        ligula elit eu tellus. Pellentesque non vehicula est. Maecenas semper eros arcu, ac laoreet
-        libero varius at. Duis posuere semper enim, et luctus enim ultrices sed. Integer diam
-        turpis, aliquet
-      </p>
+    <section className="container flex flex-col p-8 md:flex-row">
+      <div>
+        <h2 className="text-3xl font-bold">Wat kan je verwachten?</h2>
+        <hr className="my-2 w-16 rounded border-y-4 border-red-500" />
+        <p>
+          Op zaterdag 1 juli organiseert Zuiderkempen Diamonds hun eerste 3X3 tornooi in het
+          Sportpark Joris Verhaegen te Hulshout. Ben jij de nieuwe Thibaut Vervoort of Julie Vanloo?
+          Schrijf je dan snel in door onderstaande invulformulier in te vullen! Verdere informatie
+          ontvang je via het opgegeven emailadres.
+        </p>
+      </div>
+      <img src="/logo.jpg" alt="Logo Zuiderkempen Diamonds" width={200} className="self-center" />
     </section>
   );
 }

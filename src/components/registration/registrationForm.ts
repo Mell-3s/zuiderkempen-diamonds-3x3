@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-const categories = ["Heren", "Dames"] as const;
+const categories = ["Jongens", "Dames"] as const;
 export const subCategoriesMale = [
   "U12 Jongens",
   "U14 Jongens",
@@ -15,7 +15,7 @@ export const subCategoriesFemale = [
 ] as const;
 export const categoriesTabs = [
   {
-    category: "Heren",
+    category: "Jongens",
     subCategories: subCategoriesMale,
   },
   {
@@ -33,7 +33,6 @@ export const registrationForm = z.object({
     phone: z.string(),
     email: z.string().email(),
     birthday: z.string(),
-    isPlayer: z.boolean(),
   }),
   players: z.object({ name: z.string(), birthday: z.string() }).array().min(3),
 });
