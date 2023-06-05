@@ -23,8 +23,18 @@ export function sendMail(form: TRegistrationForm) {
   );
 }
 
-const subCategoriesMale = ["U12 Jongens", "U14 Jongens", "U16 Jongens", "U18 + Seniors"] as const;
-const subCategoriesFemale = ["U12 Meisjes", "U14 Meisjes", "U16 Meisjes", "U18 + Dames"] as const;
+const subCategoriesMale = [
+  "U12 Jongens (2012-2013)",
+  "U14 Jongens (2010-2011)",
+  "U16 Jongens (2008-2009)",
+  "U18 + Seniors",
+] as const;
+const subCategoriesFemale = [
+  "U12 Meisjes (2012-2013)",
+  "U14 Meisjes (2010-2011)",
+  "U16 Meisjes (2008-2009)",
+  "U18 + Dames",
+] as const;
 export const categoriesTabs = [
   {
     category: "Jongens",
