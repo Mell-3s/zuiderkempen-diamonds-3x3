@@ -162,7 +162,11 @@ function Registration() {
                 <span className="font-bold text-red-500">Inschrijving:</span>
                 <span className="ml-2">&euro;15</span>
               </div>
-              <Button color="red" type="submit" className="mt-4 flex items-center md:m-0">
+              <Button
+                color="red"
+                type="submit"
+                className="mt-4 flex items-center justify-center md:m-0"
+              >
                 {isLoading && <Spinner color="red" className="mr-2" />}
                 Inschrijven
               </Button>
