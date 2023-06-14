@@ -24,13 +24,13 @@ export function sendMail(form: TRegistrationForm) {
 }
 
 const subCategoriesMale = [
-  "U12 Mix Jongens en/of Meisjes (2012 of jonger)",
+  "U12 Mixed (2012 of jonger)",
   "U14 Jongens (2010 of jonger)",
   "U16 Jongens (2008 of jonger)",
   "U18 + Seniors",
 ] as const;
 const subCategoriesFemale = [
-  "U12 Mix Jongens en/of Meisjes (2012 of jonger)",
+  "U12 Mixed (2012 of jonger)",
   "U14 Meisjes (2010 of jonger)",
   "U16 Meisjes (2008 of jonger)",
   "U18 + Dames",
