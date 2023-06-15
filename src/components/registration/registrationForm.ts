@@ -26,13 +26,13 @@ export function sendMail(form: TRegistrationForm) {
 const subCategoriesMale = [
   "U12 Mixed (2012 of jonger)",
   "U14 Jongens (2010 of jonger)",
-  "U16 Jongens (2008 of jonger)",
+  "U17 Jongens (2007 of jonger)",
   "U18 + Seniors",
 ] as const;
 const subCategoriesFemale = [
   "U12 Mixed (2012 of jonger)",
   "U14 Meisjes (2010 of jonger)",
-  "U16 Meisjes (2008 of jonger)",
+  "U17 Meisjes (2007 of jonger)",
   "U18 + Dames",
 ] as const;
 export const categoriesTabs = [
