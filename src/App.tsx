@@ -1,13 +1,11 @@
-import { Footer, Header, Intro, Registration } from "./components";
+import { Ended, Footer, Header } from "./components";
 
 function App() {
   return (
     <>
       <Header />
       <main>
-        <Intro />
-        <hr className="container" />
-        <Registration />
+        <Ended />
       </main>
       <Footer />
     </>
